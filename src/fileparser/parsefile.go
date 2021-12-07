@@ -43,7 +43,7 @@ func ParseFile(logpath string, excelpath string) {
 func ParseMonthlyUserInfo(userinfo map[string][]model.UserInfo) (map[int]map[string]int, map[string]string) {
 	yearmap := buildyearmap()
 	userlastlogin := map[string]string{}
-	fmt.Println(userlastlogin)
+	//fmt.Println(userlastlogin)
 	for user, userinfolist := range userinfo {
 		fmt.Println(user)
 		logindates := []time.Time{}
@@ -107,14 +107,14 @@ func buildyearmap() map[int]map[string]int {
 //add user to the array of users if user doesn't exit. if exists then add the time to the UserInfo array.
 func adduserinfo(loginput string, userinfo map[string][]model.UserInfo) map[string][]model.UserInfo {
 	username, logintime := getusername(loginput)
-	value, ok := userinfo[username] //ok can be used to check true or false.
-	println("bool", ok)
+	value := userinfo[username] //ok can be used to check true or false.
+	//println("bool", ok)
 	//initialize
 	userlog := &model.UserInfo{}
 	userlog.LoginDateTime = append(userlog.LoginDateTime, logintime) //setu logindatetime
 	usertime, _ := time.Parse(time.RFC3339, logintime)
 	userlog.LoginDate = append(userlog.LoginDate, usertime)
-	println(userlog.LoginDate[userlog.LoginDate.Len()-1].Date())
+	//println(userlog.LoginDate[userlog.LoginDate.Len()-1].Date())
 	delete(userinfo, username)      //delete the key from the object
 	value = append(value, *userlog) //append the array with new entry
 	userinfo[username] = value      //set the map key to new value
