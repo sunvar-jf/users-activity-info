@@ -2,6 +2,7 @@ package displayparser
 
 import (
 	"fileparsemod/src/helpers"
+	"fmt"
 	"strconv"
 
 	"github.com/xuri/excelize/v2"
@@ -16,7 +17,8 @@ func GetExcelBook(exelpath string, yearmap map[int]map[string]int, lastloginmap 
 	setMonthlysheetData(f, yearmap)
 	setlastloginSheetData(f, lastloginmap)
 	f.Save()
-	return ""
+	fmt.Println("The graph has been plotted successfully in the Excel sheet.")
+	return "success"
 }
 
 func setlastloginSheetData(f *excelize.File, lastloginmap map[string]string) {
@@ -27,9 +29,10 @@ func setlastloginSheetData(f *excelize.File, lastloginmap map[string]string) {
 	f.SetCellValue(helpers.LastLoginSheetName, "A1", "User Name")
 	f.SetCellValue(helpers.LastLoginSheetName, "B1", "Last Login Time")
 	index := 2
-	for user, timesloggedin := range lastloginmap {
+	for user, timelastloggedin := range lastloginmap {
 		f.SetCellValue(helpers.LastLoginSheetName, "A"+strconv.Itoa(index), user)
-		f.SetCellValue(helpers.LastLoginSheetName, "B"+strconv.Itoa(index), timesloggedin)
+		f.SetCellValue(helpers.LastLoginSheetName, "B"+strconv.Itoa(index), timelastloggedin)
+		fmt.Println(user, " ", timelastloggedin)
 		index++
 	}
 }
@@ -41,10 +44,12 @@ func setMonthlysheetData(f *excelize.File, yearmap map[int]map[string]int) {
 		//for second year
 		if ind == 1 {
 			f.SetCellValue("usersheet", helpers.SecondYearColumn+strconv.Itoa(yearind), year)
+			fmt.Println(strconv.Itoa(year))
 		}
 		//for first year
 		if ind == 0 {
 			f.SetCellValue("usersheet", helpers.FirstYearColumn+strconv.Itoa(yearind), year)
+			fmt.Println(strconv.Itoa(year))
 		}
 		//set months and year1 and year2 value
 		for month, logincount := range monthmap {
@@ -52,11 +57,13 @@ func setMonthlysheetData(f *excelize.File, yearmap map[int]map[string]int) {
 			if ind == 0 {
 				if logincount > 0 {
 					f.SetCellValue("usersheet", helpers.FirstYearColumn+strconv.Itoa(yearind), logincount)
+					fmt.Println(month, " ", strconv.Itoa(logincount))
 				}
 			}
 			if ind == 1 {
 				if logincount > 0 {
 					f.SetCellValue("usersheet", helpers.SecondYearColumn+strconv.Itoa(yearind), logincount)
+					fmt.Println(month, " ", strconv.Itoa(logincount))
 				}
 			}
 		}

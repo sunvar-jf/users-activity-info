@@ -18,7 +18,7 @@ User provides multiple access-request.log(rename files but with .log extension o
 
 **What can be improved further?**
 
-Parsing of access-request.log inside a zip file. Search for users logged on a specific day or between a time range. The current logic in code can be easily extended to achieve the day or time ranged based logins easily.
+Parsing of access-request.log inside a zip file. Search for users logged on a specific day or between a time range. The current logic in code can be easily extended to achieve both.
 
 Enjoy Reading and Coding!
 

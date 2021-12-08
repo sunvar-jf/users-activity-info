@@ -49,13 +49,12 @@ func ParseMonthlyUserInfo(userinfo map[string][]model.UserInfo) (map[int]map[str
 		logindates := []time.Time{}
 		for _, userloginfo := range userinfolist {
 			getmonthmap(userloginfo.LoginDate, yearmap)
-			fmt.Println("time is :", userloginfo.LoginDate[0])
+			fmt.Println("time logged in :", userloginfo.LoginDate[0])
 			logindates = append(logindates, userloginfo.LoginDate[0])
 		}
 		userlastlogin[user] = getlastloginmap(logindates).String()
 	}
 	return yearmap, userlastlogin
-	//tim, _ := time.Parse(time.RFC3339, "2021-11-18T14:21:56.024Z")
 }
 
 func getlastloginmap(timearr []time.Time) time.Time {
