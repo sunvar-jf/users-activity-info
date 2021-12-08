@@ -6,7 +6,7 @@ This tool will help to get User's Last Login Information and also will get the l
 
 **How does this program work?**
 
-User provides multiple access-request.log(rename files but with .log extension only) of artifactory as an input for the program. The program parses the log and gets unique users with their login information. Along with the access-request.log user has to provide the path of the graphoutput.xlsx file as an input for the program too. The output graphs and relevant data shows up in the excel sheet.
+User provides multiple access-request.log(rename files but with .log extension only) of artifactory as an input for the program. The program parses the log and gets unique users with their login information. Along with the access-request.log user has to provide the path of the excel sheet file as an input for the program too. The output graphs and relevant data shows up in the excel sheet.
 
 **How to run the tool**
 
